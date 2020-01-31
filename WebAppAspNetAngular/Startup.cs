@@ -21,6 +21,7 @@ namespace WebAppAspNetAngular
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddCors();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -42,6 +43,7 @@ namespace WebAppAspNetAngular
                 app.UseHsts();
             }
 
+            app.UseCors( options => { options.AllowAnyOrigin(); });
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             if (!env.IsDevelopment())
